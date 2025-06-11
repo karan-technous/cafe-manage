@@ -53,10 +53,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
 
             String token = requestTokenHeader.split("Bearer ")[1];
+            System.out.println("the token="+token);
             Long userId = jwtService.getUserIdFromToken(token);
 
             if (userId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserEntity user = userService.findByUserId(userId);
+                System.out.println("the user="+user);
                 UsernamePasswordAuthenticationToken authToken =
                         new UsernamePasswordAuthenticationToken(user, null, null);
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
@@ -65,8 +67,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
             // ✅ Only forward the request if everything is valid
             filterChain.doFilter(request, response);
-
+            System.out.println("after the =");
         } catch (Exception ex) {
+            System.out.println("error="+ex.getMessage());
             // ✅ GlobalExceptionHandler will now handle it correctly
             handlerExceptionResolver.resolveException(request, response, null, ex);
         }
