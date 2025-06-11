@@ -24,6 +24,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -60,7 +61,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 UserEntity user = userService.findByUserId(userId);
                 System.out.println("the user="+user);
                 UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(user, null, null);
+                        new UsernamePasswordAuthenticationToken(user, null, List.of());
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
