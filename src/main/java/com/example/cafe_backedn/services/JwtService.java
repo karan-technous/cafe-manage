@@ -2,6 +2,7 @@ package com.example.cafe_backedn.services;
 
 import com.example.cafe_backedn.entity.UserEntity;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +26,7 @@ public class JwtService {
 
     public String generateToken(UserEntity user){
         return Jwts.builder()
+                .setHeaderParam(Header.TYPE, Header.JWT_TYPE) // sets "typ": "JWT"
                 .subject(String.valueOf(user.getId()))
                 .claim("email",user.getEmail())
                 .claim("role","user")
