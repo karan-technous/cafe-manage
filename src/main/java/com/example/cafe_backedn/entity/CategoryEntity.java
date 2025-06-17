@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -23,7 +24,8 @@ public class CategoryEntity {
 
     private String name;
 
-    @CreatedDate
+    @CreationTimestamp
+    @Column(updatable = false)
     private Date createdAt;
 
     @UpdateTimestamp
