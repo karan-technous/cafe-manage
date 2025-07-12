@@ -2,10 +2,8 @@ package com.example.cafe_backedn.controller;
 
 import com.example.cafe_backedn.advices.PaginationResponse;
 import com.example.cafe_backedn.dto.LoginDto;
-import com.example.cafe_backedn.dto.OrderDto;
 import com.example.cafe_backedn.dto.UserDto;
 import com.example.cafe_backedn.dto.UserPaginateDto;
-import com.example.cafe_backedn.exception.ResourceNotFound;
 import com.example.cafe_backedn.services.AuthService;
 import com.example.cafe_backedn.services.UserService;
 import jakarta.validation.Valid;
